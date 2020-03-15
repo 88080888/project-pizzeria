@@ -133,6 +133,7 @@
       /* END: click event listener to trigger */
       });
     }
+
     initOrderForm(){
       const thisProduct = this;
 
@@ -206,6 +207,9 @@
       }
       /* END LOOP: for each paramId in thisProduct.data.params */
 
+      /*multiply price by account */
+      price *= thisProduct.amountWidget.value;
+
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = price;
     }
@@ -213,6 +217,9 @@
     initAmountWidget(){
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidgetElem.addEventListener('updated',function(){
+        thisProduct.processOrder();
+      });     
     }
   }
 
@@ -220,7 +227,9 @@
     constructor(element){
       const thisWidget = this;
       thisWidget.getElements(element);
+      thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
+      thisWidget.initActions();
 
       console.log('AmountWidget:', thisWidget);
       console.log('constructor arguments:', element);
@@ -240,16 +249,36 @@
       const newValue = parseInt(value);
 
       //add validation
-      thisWidget.value = newValue;
+      if (newValue != thisWidget.value && newValue >= settings.amountWidget.defaultMin && newValue <=  settings.amountWidget.defaultMax) {
+        thisWidget.value = newValue;
+        thisWidget.announce();
+      } 
+
       thisWidget.input.value = thisWidget.value;
     }
 
     initActions(){
       const thisWidget = this;
 
-    
+      thisWidget.input.addEventListener('change',function() {
+        thisWidget.setValue(thisWidget.input.value);
+      });
+      thisWidget.linkDecrease.addEventListener('click',function() {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value-1);
+      });
+      thisWidget.linkIncrease.addEventListener('click',function() {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value+1);
+      });
     }
 
+    announce() {
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
+    }
   }
 
   const app = {

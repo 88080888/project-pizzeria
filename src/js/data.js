@@ -42,7 +42,7 @@ dataSource.products = {
       '<img class="toppings-salami" src="images/pizza/salami.svg">',
       '<img class="toppings-olives" src="images/pizza/olives.svg">',
       '<img class="toppings-redPeppers" src="images/pizza/red-peppers.svg">',
-      '<img class="oppings-greenPeppers" src="images/pizza/green-peppers.svg">',
+      '<img class="toppings-greenPeppers" src="images/pizza/green-peppers.svg">',
       '<img class="toppings-mushrooms" src="images/pizza/mushrooms.svg">',
       '<img class="toppings-basil" src="images/pizza/basil.svg">',
     ],
