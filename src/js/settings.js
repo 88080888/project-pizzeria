@@ -1,4 +1,4 @@
-import Handlebars from './utils.js';
+/* global Handlebars */
 
 //selektory
 export const select = {

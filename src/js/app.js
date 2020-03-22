@@ -1,6 +1,6 @@
 import {settings, select} from './settings.js';
 import Product from './components/Product.js';
-import Cart from '.components/Cart.js';
+import Cart from './components/Cart.js';
 
 const app = {
   initMenu(){
@@ -44,11 +44,12 @@ const app = {
 
     thisApp.productList = document.querySelector(select.containerOf.menu);
 
-    thisApp.productList.adddEventListener('add-to-cart',function(event){
-      app.cart.add(event.detaiil.product);
+    thisApp.productList.addEventListener('add-to-cart', function(event) {
+      app.cart.add(event.detail.product);
     });
   },
-  
+
+
   init: function(){
     const thisApp = this;
     //console.log('*** App starting ***');
