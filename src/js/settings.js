@@ -31,6 +31,8 @@ export const select = {
       input: 'input.amount', // CODE CHANGED
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
+      people: 'input[name="people"]' ,
+      hours: 'input[name="hours"]',
     },
     datePicker: {
       wrapper: '.date-picker',
@@ -65,6 +67,9 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    starters: '[name="starter"]',
+    phone:'.order-confirmation [type="tel"]',
+    adress:'.order-confirmation [type="text"]',
   },
   nav: {
     links: '.main-nav a',

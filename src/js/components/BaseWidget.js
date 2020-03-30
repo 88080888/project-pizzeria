@@ -14,7 +14,13 @@ class BaseWidget{
 
     return thisWidget.correctValue;
   }
-  
+
+  setValue(value){
+    const thisWidget = this;
+
+    thisWidget.value = value;
+  }
+
   // setter - metoda wykonywana przy kazdej probie ustawiania warosci wlasciwosci value
   set value(value){
     const thisWidget = this;
@@ -26,12 +32,6 @@ class BaseWidget{
       thisWidget.announce();
     } 
     thisWidget.renderValue();
-  }
-
-  setValue(value){
-    const thisWidget = this;
-
-    thisWidget.value = value;
   }
 
   //przeksztalca wartosc ktora chcemy ustawić na odpowieni typ lub formę
@@ -48,7 +48,7 @@ class BaseWidget{
   renderValue(){
     const thisWidget = this;
     
-    thisWidget.dom.wrapper.innerHTML = thisWidget.value;
+    thisWidget.dom.wrapper.innerHTML = thisWidget.correctvalue;
   }
 
   announce() {
