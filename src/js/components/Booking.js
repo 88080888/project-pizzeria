@@ -44,7 +44,7 @@ class Booking {
   
     thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
 
-    thisBooking.dom.formSubmit = thisBooking.dom.wrapper.querySelector(select.booking.formSubmit);
+    thisBooking.dom.bookTable = thisBooking.dom.wrapper.querySelector(select.booking.bookTable);
   }
 
   getData(){
@@ -70,8 +70,6 @@ class Booking {
       ],
     };
 
-    //console.log('get Data params',params);
-
     const urls = {
       booking:       settings.db.url + '/' + settings.db.booking 
                                      + '?' + params.booking.join('&'),
@@ -82,7 +80,6 @@ class Booking {
       eventsRepeat:  settings.db.url + '/' + settings.db.event   
                                      + '?' + params.eventsRepeat.join('&'),
     };
-    //console.log('get Data urls',urls);
 
     Promise.all([
       fetch(urls.booking),
@@ -103,7 +100,9 @@ class Booking {
         console.log('bookings',bookings);
         console.log('eventsCurrent',eventsCurrent);
         console.log('eventsRepeat',eventsRepeat);
+        thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
+
   }
 
   parseData(bookings, eventsCurrent, eventsRepeat){
@@ -142,13 +141,10 @@ class Booking {
     thisBooking.updateDOM();
   }
 
-
   sendBooked(){
     const thisBooking = this;
 
     const url = settings.db.url + '/' + settings.db.booking;
-
-    console.log('url',url);
 
     const dataToSend = {
       date: thisBooking.datePicker.value,
@@ -183,7 +179,6 @@ class Booking {
       },
       body: JSON.stringify(dataToSend)
     };
-    console.log('dataToSend',dataToSend);
 
     fetch(url, options)
       .then(function(response) {
@@ -193,7 +188,6 @@ class Booking {
         console.log('parsedResponse', parsedResponse);
       });
   }
-
 
   makeBooked(date,hour,duration,table){
     const thisBooking = this;
@@ -219,10 +213,8 @@ class Booking {
     const thisBooking = this;
 
     thisBooking.date = thisBooking.datePicker.value;
-    console.log('actualdate', thisBooking.date);
 
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
-    console.log('actualhour',thisBooking.hour);
 
     let allAvaliable = false;
 
@@ -280,14 +272,15 @@ class Booking {
         table.classList.remove('selected');
       }
     });
-    /*
-    thisBooking.dom.formSubmit.addEventListener('click', function(){
+  
+    thisBooking.dom.bookTable.addEventListener('click', function(){
       event.preventDefault();
       thisBooking.sendBooked();
+      
       for(let table of thisBooking.dom.tables){
         table.classList.remove('selected');
       }
-    });*/
+    });
 
   }
 

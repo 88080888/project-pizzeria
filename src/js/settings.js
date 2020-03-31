@@ -70,6 +70,7 @@ export const select = {
     starters: '[name="starter"]',
     phone:'.order-confirmation [type="tel"]',
     adress:'.order-confirmation [type="text"]',
+    bookTable:'.order-confirmation [type="submit"]',
   },
   nav: {
     links: '.main-nav a',

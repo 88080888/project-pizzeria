@@ -10,8 +10,9 @@ class BaseWidget{
 
   // getter - metoda wykonywana przy kazdej probie odczytania wartosci wlasciwosci value
   get value(){
+    
     const thisWidget = this;
-
+  
     return thisWidget.correctValue;
   }
 
@@ -25,7 +26,7 @@ class BaseWidget{
   set value(value){
     const thisWidget = this;
     const newValue = thisWidget.parseValue(value);
-
+    
     //add validation
     if (newValue != thisWidget.correctValue && thisWidget.isValid(newValue)) {
       thisWidget.correctValue = newValue;
