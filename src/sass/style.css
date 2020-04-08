@@ -967,4 +967,12 @@ input.error, select.error {
           justify-content: space-between;
   margin: 48px auto;
 }
+
+.home-wrapper {
+  background-color: white;
+}
+
+.home-wrapper .upper-text {
+  color: red;
+}
 /*# sourceMappingURL=style.css.map */

@@ -74,7 +74,12 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    holders: '.link-holder a',
   },
+  carousel: {
+    slides: '.slide',
+    dots: '.fa-circle',
+  }
 };
 
 //nazwy klas
@@ -97,6 +102,12 @@ export const classNames = {
   pages: {
     active: 'active',
   },
+  slides: {
+    active: 'active',
+  },
+  dots: {
+    active: 'active', 
+  }
 };
 
 //ustawienia skryptu

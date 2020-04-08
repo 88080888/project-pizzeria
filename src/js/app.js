@@ -2,6 +2,7 @@ import {settings, select, classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Carousel from './components/Carousel.js';
 
 const app = {
   initPages: function(){
@@ -10,6 +11,7 @@ const app = {
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
 
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    thisApp.navHolders = document.querySelectorAll(select.nav.holders);
 
     const idFromHash = window.location.hash.replace('#/','');
    
@@ -26,6 +28,24 @@ const app = {
     thisApp.activatePage(pageMatchingHash);
 
     for(let link of thisApp.navLinks){
+      link.addEventListener('click',function(event){
+        const clickedElement = this;
+        event.preventDefault();
+
+        /*get page id from href atribute */
+        // w stalej id zapisuje atrybut href kliknietego elementu w ktorym zamieniam znak # na pusty ciag znakow
+        const id = clickedElement.getAttribute('href').replace('#','');
+
+        /* run thisApp.activatePage with that id*/
+        thisApp.activatePage(id);
+
+        /*change URL hash*/
+        window.location.hash = '#/' + id;
+
+      });
+    }
+
+    for(let link of thisApp.navHolders){
       link.addEventListener('click',function(event){
         const clickedElement = this;
         event.preventDefault();
@@ -116,6 +136,10 @@ const app = {
     thisApp.booking = new Booking(bookingWrapper);
   },
 
+  initCarousel: function() {
+    new Carousel();
+  },
+
   init: function(){
     const thisApp = this;
     //console.log('*** App starting ***');
@@ -129,6 +153,7 @@ const app = {
     //thisApp.initMenu();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initCarousel();
   },
 
 };
