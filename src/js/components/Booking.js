@@ -305,7 +305,6 @@ class Booking {
   rangeSliderColour() {
     const thisBooking = this;
     const bookedHours = thisBooking.booked[thisBooking.date];
-    console.log('bookedhours:',bookedHours);
     const sliderColours = [];
 
     thisBooking.dom.rangeSlider = thisBooking.dom.wrapper.querySelector('.rangeSlider');
