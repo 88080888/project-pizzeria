@@ -7,7 +7,7 @@ import Carousel from './components/Carousel.js';
 const app = {
   initPages: function(){
     const thisApp = this;
-    //przechowyjemy wszystkie kontenery podstron ktore musimy wyszukac w drzewie dom / dzięki children we wlasciwosci pages znajda sie wszystkie dzieci kontenera stron
+    //  przechowyjemy wszystkie kontenery podstron ktore musimy wyszukac w drzewie dom /  dzięki children we wlasciwosci pages znajda sie wszystkie dzieci kontenera stron
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
 
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
