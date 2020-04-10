@@ -18,5 +18,5 @@ class Carousel {
     }
   }
 }
-
+//jg
 export default Carousel;
